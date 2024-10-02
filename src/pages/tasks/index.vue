@@ -3,12 +3,11 @@ import { supabase } from '@/lib/supabaseClient'
 import { ref, h } from 'vue'
 import type { Tables } from 'database/types'
 import type { ColumnDef } from '@tanstack/vue-table'
-import DataTable from '@/components/ui/data-table/DataTable.vue'
 import { RouterLink } from 'vue-router'
 
 const tasks = ref<Tables<'tasks'>[] | null>(null)
 
-;(async () => {
+const getTasks = async () => {
   const { data, error } = await supabase.from('tasks').select()
 
   if (error) console.log(error)
@@ -16,7 +15,9 @@ const tasks = ref<Tables<'tasks'>[] | null>(null)
   tasks.value = data
 
   console.log('tasks...', tasks)
-})()
+}
+
+await getTasks()
 
 const columns: ColumnDef<Tables<'tasks'>>[] = [
   {
