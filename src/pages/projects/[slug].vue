@@ -14,9 +14,9 @@ watch(
 )
 
 const getProject = async () => {
-  const { data, error } = await projectQuery(route.params.slug)
+  const { data, error, status } = await projectQuery(route.params.slug)
 
-  if (error) console.log(error)
+  if (error) useErrorStore().setError({ error, customCode: status })
 
   project.value = data
 }
@@ -72,7 +72,7 @@ await getProject()
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow v-for="task in project.tasks" :key="task">
+            <TableRow v-for="task in project.tasks" :key="task.id">
               <TableCell> Lorem ipsum dolor sit amet. </TableCell>
               <TableCell> In progress </TableCell>
               <TableCell> 22/08/2024 </TableCell>
