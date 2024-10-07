@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient'
+import { register } from '@/utils/supaAuth'
 
 const formData = ref({
   username: '',
@@ -10,16 +10,14 @@ const formData = ref({
   confirmPassword: ''
 })
 
+const router = useRouter()
+
 const signUp = async () => {
-  const { data, error } = await supabase.auth.signUp({
-    email: formData.value.email,
-    password: formData.value.password
-  })
-  if (error) console.log(error)
-  console.log(data)
+  const isRegistered = await register(formData.value)
+  if (isRegistered) router.push('/')
 }
 </script>
-
+// re_Xq7nMmLx_JsUAc3rdjyshqznMZmVYyYzG
 <template>
   <div
     class="mx-auto w-full flex justify-center items-center p-10 text-center -mt-10 min-h-[90vh] h-full"
