@@ -7,7 +7,7 @@ const links = [
 const accountLinks = [
   { title: 'Profile', to: '/profile', icon: 'lucide:user' },
   { title: 'Settings', to: '/settings', icon: 'lucide:settings' },
-  { title: 'Sign Out', to: '/signout', icon: 'lucide:log-out' }
+  { title: 'Sign Out', icon: 'lucide:log-out' }
 ]
 </script>
 
