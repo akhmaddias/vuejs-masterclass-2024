@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { logout } from '@/utils/supaAuth'
+
 const links = [
   { title: 'Dashboard', to: '/', icon: 'lucide:house' },
   { title: 'Projects', to: '/projects', icon: 'lucide:building-2' },
@@ -10,9 +12,9 @@ const accountLinks = [
   { title: 'Sign Out', icon: 'lucide:log-out' }
 ]
 
-const executeAction = (linkTitle: string) => {
+const executeAction = async (linkTitle: string) => {
   if (linkTitle === 'Sign Out') {
-    //
+    await logout()
   }
 }
 </script>
