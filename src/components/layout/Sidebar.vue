@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { logout } from '@/utils/supaAuth'
-
 const links = [
   { title: 'Dashboard', to: '/', icon: 'lucide:house' },
   { title: 'Projects', to: '/projects', icon: 'lucide:building-2' },
@@ -14,6 +12,7 @@ const accountLinks = [
 
 const executeAction = async (linkTitle: string) => {
   if (linkTitle === 'Sign Out') {
+    const { logout } = await import('@/utils/supaAuth')
     await logout()
   }
 }
