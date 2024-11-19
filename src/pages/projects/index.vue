@@ -7,15 +7,16 @@ usePageStore().pageData.title = 'Projects'
 const projectsLoader = useProjectsStore()
 const { projects } = storeToRefs(projectsLoader)
 const { getProjects } = projectsLoader
-const { getGroupedCollabs, groupedCollabs } = useCollabs()
 
 await getProjects()
 
-if (projects.value) await getGroupedCollabs(projects.value)
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
 
-console.log('Test: ', groupedCollabs.value)
+if (projects.value) getGroupedCollabs(projects.value)
+
+const columnsWithCollabs = columns(groupedCollabs)
 </script>
 
 <template>
-  <DataTable v-if="projects" :columns="columns" :data="projects" />
+  <DataTable v-if="projects" :columns="columnsWithCollabs" :data="projects" />
 </template>
