@@ -20,7 +20,7 @@ await getProject(slug)
     <TableRow>
       <TableHead> Name </TableHead>
       <TableCell>
-        <AppInPlaceEdit v-model="project.name" />
+        <AppInPlaceEdit v-model="project.name" @commit="console.log('change')" />
       </TableCell>
     </TableRow>
     <TableRow>
