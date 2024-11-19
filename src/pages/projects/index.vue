@@ -7,9 +7,13 @@ usePageStore().pageData.title = 'Projects'
 const projectsLoader = useProjectsStore()
 const { projects } = storeToRefs(projectsLoader)
 const { getProjects } = projectsLoader
-const { getProfilesByIds } = useCollabs()
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
 
 await getProjects()
+
+if (projects.value) await getGroupedCollabs(projects.value)
+
+console.log('Test: ', groupedCollabs.value)
 </script>
 
 <template>
