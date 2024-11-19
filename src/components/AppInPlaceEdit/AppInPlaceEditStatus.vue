@@ -11,7 +11,24 @@ const toggleValue = () => {
 
 <template>
   <div class="text-2xl cursor-pointer" @click="toggleValue">
-    <iconify-icon v-if="value === 'completed'" class="text-green-500" icon="lucide:circle-check" />
-    <iconify-icon v-else class="text-gray-500" icon="lucide:circle-dot" />
+    <Transition mode="out-in">
+      <iconify-icon
+        v-if="value === 'completed'"
+        class="text-green-500"
+        icon="lucide:circle-check"
+      />
+      <iconify-icon v-else class="text-gray-500" icon="lucide:circle-dot" />
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: transform 0.1s;
+}
+.v-enter-from,
+.v-leave-to {
+  transform: scale(0.3);
+}
+</style>
