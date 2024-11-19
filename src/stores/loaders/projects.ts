@@ -1,10 +1,12 @@
-import { projectsQuery, type Projects } from '@/utils/supaQueries'
+import { projectQuery, projectsQuery, type Project, type Projects } from '@/utils/supaQueries'
 import { useMemoize } from '@vueuse/core'
 
 export const useProjectsStore = defineStore('projects-store', () => {
   const projects = ref<Projects>()
+  const project = ref<Project>()
 
   const loadProjects = useMemoize(async (key: string) => await projectsQuery)
+  const loadProject = useMemoize(async (slug: string) => await projectQuery(slug))
 
   const validateCache = () => {
     if (projects.value?.length) {
@@ -28,7 +30,18 @@ export const useProjectsStore = defineStore('projects-store', () => {
 
     validateCache()
   }
+
+  const getProject = async (slug: string) => {
+    const { data, error, status } = await loadProject(slug)
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    if (data) project.value = data
+  }
+
   return {
+    project,
+    getProject,
     projects,
     getProjects
   }
