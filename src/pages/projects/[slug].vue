@@ -26,7 +26,7 @@ await getProject(slug)
     <TableRow>
       <TableHead> Description </TableHead>
       <TableCell>
-        {{ project.description }}
+        <AppInPlaceEdit v-model="project.description" @commit="updateProject" />
       </TableCell>
     </TableRow>
     <TableRow>
