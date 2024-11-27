@@ -32,7 +32,7 @@ console.log(collabs)
     <TableRow>
       <TableHead> Description </TableHead>
       <TableCell>
-        <AppInPlaceEdit v-model="project.description" @commit="updateProject" />
+        <AppInPlaceEditTextArea v-model="project.description" @commit="updateProject" />
       </TableCell>
     </TableRow>
     <TableRow>
