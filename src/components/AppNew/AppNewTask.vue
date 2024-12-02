@@ -10,7 +10,7 @@ defineEmits(['commit'])
       <SheetHeader>
         <SheetTitle>Create New Task</SheetTitle>
       </SheetHeader>
-      <p>Content</p>
+      <FormKit type="text" />
     </SheetContent>
   </Sheet>
 </template>
