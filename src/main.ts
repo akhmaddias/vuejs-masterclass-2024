@@ -4,6 +4,7 @@ import 'iconify-icon'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createMetaManager } from 'vue-meta'
 
 import { plugin } from '@formkit/vue'
 import config from '../formkit.config'
@@ -15,6 +16,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(createMetaManager())
 app.use(plugin, config)
 
 app.mount('#app')
